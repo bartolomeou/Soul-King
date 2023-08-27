@@ -31,5 +31,3 @@ for track in sp.playlist_tracks(playlist_URI)['items']:
         [sp.audio_features(track_uri)[0]], columns=columns)
 
     track_data = pd.concat([track_data, track_features], ignore_index=True)
-
-print(track_data.head())
