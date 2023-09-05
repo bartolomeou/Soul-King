@@ -10,14 +10,13 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hone():
-    # return "<p>Hello, World!</p>"
+def home():
     return render_template('home.html')
 
 
 @app.route('/recommend', methods=['POST'])
 def recommend():
-    url = request.form['URL']
+    url = request.form['playlist-url']
     playlist_df = get_playlist_df(url)
 
     num_recommendations = int(request.form['number-of-recs'])
@@ -32,4 +31,4 @@ def recommend():
         tracks.append(recommendations.at[i, 'track_name'] +
                       ' - ' + recommendations.at[i, 'artist_name'])
 
-    return render_template('results.html', songs=tracks)
+    return render_template('results.html', tracks=tracks)
