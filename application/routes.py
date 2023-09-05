@@ -24,8 +24,6 @@ def recommend():
     recommendations = get_recommendations(playlist_df, num_recommendations)
     recommendations.reset_index(drop=True, inplace=True)
 
-    print(recommendations)
-
     tracks = []
     for i in range(num_recommendations):
         tracks.append(recommendations.at[i, 'track_name'] +

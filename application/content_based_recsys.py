@@ -10,7 +10,8 @@ def _get_playlist_vector(playlist_df):
     Summarize a user's playlist into a vector.
     '''
     # filter feature_set to only include tracks in the playlist
-    feature_set_playlist = feature_set[feature_set['id'].isin(playlist_df)]
+    feature_set_playlist = feature_set[feature_set['id'].isin(
+        playlist_df['id'])]
 
     # number of tracks in the playlist that were not found in feature_set
     not_included = playlist_df.shape[0] - feature_set_playlist.shape[0]
@@ -21,7 +22,8 @@ def _get_playlist_vector(playlist_df):
     playlist_vector = feature_set_playlist.sum()
 
     # filter feature_set to only include tracks not in the playlist
-    feature_set_nonplaylist = feature_set[~feature_set['id'].isin(playlist_df)]
+    feature_set_nonplaylist = feature_set[~feature_set['id'].isin(
+        playlist_df['id'])]
 
     return playlist_vector, feature_set_nonplaylist
 
