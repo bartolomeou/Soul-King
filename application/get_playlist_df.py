@@ -1,6 +1,8 @@
+import json
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import pandas as pd
+import re
 
 try:
     with open('../config.json', 'r') as file:
@@ -19,6 +21,9 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 
 def get_playlist_df(url):
+    '''
+    Returns a dataframe of track URIs.
+    '''
     playlist_uri = url.split('/')[-1].split('?')[0]
 
     uri = list()
